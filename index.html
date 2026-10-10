@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oymonjon Ro'zmetova | Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0b1120;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        header {
+            background-color: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            margin-left: 1.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Layout & Typography */
+        section {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 { 
+            font-size: 4rem; 
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        h2 { 
+            font-size: 2.5rem; 
+            margin-bottom: 3rem; 
+            text-align: center; 
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: #fff; }
+        p { color: var(--text-muted); margin-bottom: 1rem; }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2.subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 0;
+        }
+
+        .hero h2.subtitle::after { display: none; }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--text-main);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Grids & Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card:hover::before { opacity: 1; }
+
+        .tag {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .list-group { 
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .list-group li { 
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .list-group li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .list-group strong { color: var(--text-main); }
+
+        /* Footer */
+        footer {
+            background-color: #050811;
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer p { margin: 0; font-size: 0.9rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { display: none; }
+            h1 { font-size: 2.8rem; }
+            section { padding: 4rem 5%; }
+            .hero { min-height: 80vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Oymonjon</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero">
+        <h1>Hi, I'm <span>Oymonjon Ro'zmetova</span></h1>
+        <h2 class="subtitle">Innovator, Developer & Youth Leader</h2>
+        <p style="max-width: 600px; margin: 0 auto 2.5rem; font-size: 1.1rem;">
+            11th-grade student from Khiva, Uzbekistan, passionate about using technology to solve real-world problems and creating meaningful projects.
+        </p>
+        <div class="btn-group">
+            <a href="#projects" class="btn btn-primary">View My Projects</a>
+            <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <p>I'm an 11th-grade student with a strong interest in technology, software development, and innovation. I actively participate in volunteering, coordinate youth initiatives, and enjoy working with people who are passionate about learning and making a difference.</p>
+            <p>Beyond technology, I'm an avid reader, a language learner, and someone who believes in continuous growth. My long-term goal is to become a skilled technology professional and build solutions that create a positive impact on society.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills & Languages</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Technical Arsenal</h3>
+                <ul class="list-group">
+                    <li><strong>Languages:</strong> HTML, CSS, JavaScript</li>
+                    <li><strong>Currently Learning:</strong> React, Node.js</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Soft Skills</h3>
+                <ul class="list-group">
+                    <li>Coordination & Teamwork</li>
+                    <li>Event Organization</li>
+                    <li>Public Communication & Collaboration</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Languages</h3>
+                <ul class="list-group">
+                    <li><strong>Uzbek:</strong> Native</li>
+                    <li><strong>English:</strong> B2+</li>
+                    <li><strong>Russian:</strong> B2+</li>
+                    <li><strong>Turkish:</strong> B1+</li>
+                    <li><strong>Azerbaijani:</strong> A2</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="tag">In Progress</span>
+                <h3>ExamLab</h3>
+                <p>An educational platform designed for IELTS and SAT mock tests.</p>
+                <ul class="list-group">
+                    <li><strong>Goal:</strong> Provide students with realistic exam practice.</li>
+                    <li><strong>Tech:</strong> HTML, CSS, JavaScript.</li>
+                    <li><strong>Features:</strong> Tests, score calculation, user system.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="tag">Award Winner</span>
+                <h3>AI Health Tracker</h3>
+                <p>Healthcare technology project focused on health monitoring using AI.</p>
+                <ul class="list-group">
+                    <li><strong>Achievement:</strong> 2nd Place at IT Debate, IT Park Khiva.</li>
+                    <li><strong>Focus:</strong> Utilizing AI for personal health tracking.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="tag">EdTech Concept</span>
+                <h3>Ustoz SI</h3>
+                <p>EdTech AI concept for personalized learning experiences.</p>
+                <ul class="list-group">
+                    <li><strong>Goal:</strong> Identify weak points and recommend next steps.</li>
+                    <li><strong>Focus:</strong> AI, Personalized Learning, Education.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="tag">Startup</span>
+                <h3>BemorOvozi</h3>
+                <p>A B2B/B2G platform for collecting and analyzing patient feedback.</p>
+                <ul class="list-group">
+                    <li><strong>Problem:</strong> Lack of systematic patient feedback.</li>
+                    <li><strong>Solution:</strong> Feedback analytics platform for hospitals.</li>
+                    <li><strong>Model:</strong> Monthly subscription based on size.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="tag">Personal</span>
+                <h3>Qamar — Book Blog</h3>
+                <p>My personal project related to books, reading, and self-growth.</p>
+                <ul class="list-group">
+                    <li><strong>Focus:</strong> Web development, personal branding.</li>
+                    <li><strong>Link:</strong> bookblog-qamar.vercel.app</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Leadership & Experience</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Coordinator @ YouthCan</h3>
+                <p>Active participation in youth initiatives and team activities. Coordinated various projects aimed at youth development.</p>
+            </div>
+            <div class="card">
+                <h3>Organizer @ StemX</h3>
+                <p>Led STEM and technology initiatives. Organized large-scale events in collaboration with TATU Khorezm.</p>
+            </div>
+            <div class="card">
+                <h3>Coordinator @ Kitobxonlik</h3>
+                <p>Organized reading initiatives, book discussions, and activities to promote literature among peers.</p>
+            </div>
+            <div class="card">
+                <h3>Volunteering Impact</h3>
+                <ul class="list-group">
+                    <li>IT Community of Uzbekistan & IT Roadshow 2</li>
+                    <li>Khorezm Fest / Startup Fest</li>
+                    <li>"From Waste to Worth" Plogging Initiative</li>
+                    <li>Yashil Kelajak Camp</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2>Achievements</h2>
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <ul class="list-group">
+                <li><strong>40+ Certificates</strong> in IT, Volunteering, Education, and Training.</li>
+                <li><strong>2nd Place Winner</strong> at IT Park Khiva IT Debate with the "AI Health Tracker" project.</li>
+                <li>Extensive coordination experience in youth initiatives and STEM activities.</li>
+                <li>Active participation in specialized IT and volunteering training programs.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="card" style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">Let's connect! I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+            <div class="btn-group">
+                <a href="mailto:your.email@example.com" class="btn btn-primary">Email Me</a>
+                <a href="#" class="btn btn-outline">GitHub</a>
+                <a href="#" class="btn btn-outline">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Oymonjon Ro'zmetova. Built with passion and code.</p>
+    </footer>
+
+</body>
+</html>
