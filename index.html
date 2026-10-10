@@ -1,311 +1,296 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oymonjon Ro'zmetova | Portfolio</title>
-    <style>
-        :root {
-            --bg-color: #0b1120;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #8b5cf6;
-            --accent-light: #a78bfa;
-            --gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+    <title>Oymonjon Ro‘zmetova | Portfolio</title>
+    <meta name="description" content="Portfolio of Aymanjan Ro‘zmetova - Student, Developer, and Volunteer from Khiva, Uzbekistan.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Theme Initialization to prevent FOUC (Flash of Unstyled Content) -->
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.7;
-        }
-
-        /* Navigation */
-        header {
-            background-color: rgba(11, 17, 32, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            margin-left: 1.5rem;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--accent-light);
-        }
-
-        /* Layout & Typography */
-        section {
-            padding: 6rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 { 
-            font-size: 4rem; 
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            letter-spacing: -2px;
-        }
-
-        h2 { 
-            font-size: 2.5rem; 
-            margin-bottom: 3rem; 
-            text-align: center; 
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: #fff; }
-        p { color: var(--text-muted); margin-bottom: 1rem; }
-
-        /* Hero Section */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero h1 span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero h2.subtitle {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-bottom: 2rem;
-            letter-spacing: 0;
-        }
-
-        .hero h2.subtitle::after { display: none; }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
-        }
-
-        .btn-outline {
-            border: 2px solid rgba(255,255,255,0.1);
-            color: var(--text-main);
-            background: rgba(255,255,255,0.05);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent);
-            background: rgba(139, 92, 246, 0.1);
-        }
-
-        /* Grids & Cards */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: var(--gradient);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .card:hover::before { opacity: 1; }
-
-        .tag {
-            display: inline-block;
-            background: rgba(139, 92, 246, 0.15);
-            color: var(--accent-light);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-        }
-
-        .list-group { 
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-        
-        .list-group li { 
-            margin-bottom: 0.8rem;
-            color: var(--text-muted);
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .list-group li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        .list-group strong { color: var(--text-main); }
-
-        /* Footer */
-        footer {
-            background-color: #050811;
-            text-align: center;
-            padding: 3rem 5%;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        footer p { margin: 0; font-size: 0.9rem; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav { display: none; }
-            h1 { font-size: 2.8rem; }
-            section { padding: 4rem 5%; }
-            .hero { min-height: 80vh; }
-        }
-    </style>
+    </script>
 </head>
 <body>
 
-    <header>
-        <div class="logo">Oymonjon</div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">O/R</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#beyond">Beyond Coding</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    <section id="hero" class="hero">
-        <h1>Hi, I'm <span>Oymonjon Ro'zmetova</span></h1>
-        <h2 class="subtitle">Innovator, Developer & Youth Leader</h2>
-        <p style="max-width: 600px; margin: 0 auto 2.5rem; font-size: 1.1rem;">
-            11th-grade student from Khiva, Uzbekistan, passionate about using technology to solve real-world problems and creating meaningful projects.
-        </p>
-        <div class="btn-group">
-            <a href="#projects" class="btn btn-primary">View My Projects</a>
-            <a href="#contact" class="btn btn-outline">Let's Connect</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="label">STUDENT • DEVELOPER • VOLUNTEER</span>
+                <h1>Curious mind. <br><em>Creative spirit.</em> <br>Building with purpose.</h1>
+                <p>Hi, I'm Oymonjon — a student passionate about technology, meaningful projects, and creating solutions that make a difference.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Explore My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="moon-decoration"></div>
+                <!-- INSTRUCTION: Replace 'assets/profile.jpg' with your actual photo -->
+                <img src="photo/photo_2026-10-10_15-43-46.jpg" alt="Aymanjan Ro‘zmetova" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Aymanjan+R&size=600&background=F3F4F6&color=1F2937&font-size=0.33'">
+            </div>
         </div>
     </section>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="card" style="max-width: 800px; margin: 0 auto;">
-            <p>I'm an 11th-grade student with a strong interest in technology, software development, and innovation. I actively participate in volunteering, coordinate youth initiatives, and enjoy working with people who are passionate about learning and making a difference.</p>
-            <p>Beyond technology, I'm an avid reader, a language learner, and someone who believes in continuous growth. My long-term goal is to become a skilled technology professional and build solutions that create a positive impact on society.</p>
+    <!-- About Me -->
+    <section id="about" class="about">
+        <div class="container section-header">
+            <h2>A little about me</h2>
+        </div>
+        <div class="container about-grid">
+            <div class="about-text">
+                <p>I am an 11th-grade student from Khiva, Uzbekistan, with a profound interest in technology, software development, education, and innovation. I believe in the power of continuous learning, meaningful collaboration, and using technology to solve real-world problems.</p>
+                <p>My journey isn't just about code. I actively volunteer, coordinate youth initiatives, and love working with people. Whether I'm reading a new book, learning a new language, or exploring ideas beyond the tech sphere, I am driven by a desire to create a positive impact on society.</p>
+            </div>
+            <div class="about-fact-card">
+                <h3>Quick Facts</h3>
+                <ul>
+                    <li><strong>Based in:</strong> Khiva, Uzbekistan</li>
+                    <li><strong>Current stage:</strong> 11th grade</li>
+                    <li><strong>Interests:</strong> Technology, education, and innovation</li>
+                    <li><strong>Languages:</strong> Uzbek, English, Russian, Turkish, Azerbaijani</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <section id="skills">
-        <h2>Skills & Languages</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Technical Arsenal</h3>
-                <ul class="list-group">
-                    <li><strong>Languages:</strong> HTML, CSS, JavaScript</li>
-                    <li><strong>Currently Learning:</strong> React, Node.js</li>
+    <!-- Projects -->
+    <section id="projects" class="projects">
+        <div class="container section-header">
+            <h2>Selected Works</h2>
+        </div>
+        <div class="container project-grid">
+            <!-- Project 1 -->
+            <article class="project-card">
+                <div class="project-content">
+                    <span class="project-status">In Progress</span>
+                    <h3>ExamLab</h3>
+                    <p>An educational platform concept for IELTS and SAT mock tests, aimed at providing students with realistic exam practice.</p>
+                    <div class="project-tech">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn-text">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+                <div class="project-content">
+                    <span class="project-status completed">2nd Place Winner</span>
+                    <h3>AI Health Tracker</h3>
+                    <p>A healthcare-related technology project focused on personal health tracking, which achieved second place at the IT Park Khiva IT Debate.</p>
+                    <div class="project-tech">
+                        <span>Healthcare Tech</span><span>AI Focus</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn-text">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card">
+                <div class="project-content">
+                    <span class="project-status concept">EdTech Concept</span>
+                    <h3>Ustoz SI</h3>
+                    <p>An AI-powered education concept designed to identify students' learning difficulties and suggest actionable next steps for teachers.</p>
+                    <div class="project-tech">
+                        <span>AI</span><span>Personalized Learning</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn-text">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="project-card">
+                <div class="project-content">
+                    <span class="project-status concept">Startup Concept</span>
+                    <h3>BemorOvozi</h3>
+                    <p>A B2B/B2G healthcare feedback platform concept intended to help hospitals systematically collect and analyze patient feedback.</p>
+                    <div class="project-tech">
+                        <span>Healthcare</span><span>Analytics</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn-text">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 5 -->
+            <article class="project-card">
+                <div class="project-content">
+                    <span class="project-status completed">Personal Project</span>
+                    <h3>Qamar Book Blog</h3>
+                    <p>A personal web project dedicated to books, reading, and literature exploration.</p>
+                    <div class="project-tech">
+                        <span>Web Development</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://bookblog-qamar.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-text">Visit Site <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Experience & Leadership -->
+    <section id="experience" class="experience">
+        <div class="container section-header">
+            <h2>Experience & Leadership</h2>
+        </div>
+        <div class="container">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Coordinator</h3>
+                        <h4>YouthCan</h4>
+                        <span class="timeline-date">Date Range</span>
+                        <p>Actively participated in and coordinated youth initiatives and team activities aimed at community development.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Coordinator & Organizer</h3>
+                        <h4>StemX</h4>
+                        <span class="timeline-date">Date Range</span>
+                        <p>Led STEM and technology initiatives. Organized large-scale tech events in collaboration with TATU Khorezm.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Coordinator</h3>
+                        <h4>Kitobxonlik</h4>
+                        <span class="timeline-date">Date Range</span>
+                        <p>Organized reading initiatives, book discussions, and activities to promote literature among peers.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Student</h3>
+                        <h4>IT Park</h4>
+                        <span class="timeline-date">Date Range</span>
+                        <p>Engaged in continuous tech education, earning 40+ certificates and competing in regional IT debates.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Event Volunteer</h3>
+                        <h4>Various Initiatives</h4>
+                        <span class="timeline-date">Ongoing</span>
+                        <p>Contributed to IT Community of Uzbekistan, IT Roadshow 2, Khorezm Fest, Startup Fest, "From Waste to Worth" (environmental plogging), and Yashil Kelajak Camp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Certificates -->
+    <section id="achievements" class="achievements">
+        <div class="container section-header">
+            <h2>Achievements</h2>
+        </div>
+        <div class="container achievements-grid">
+            <div class="achievement-highlight">
+                <i class="fa-solid fa-trophy highlight-icon"></i>
+                <h3>IT Debate Runner-up</h3>
+                <p>Secured 2nd place with the "AI Health Tracker" project at the IT Park Khiva IT Debate.</p>
+            </div>
+            <div class="achievement-highlight">
+                <i class="fa-solid fa-certificate highlight-icon"></i>
+                <h3>40+ Certificates</h3>
+                <p>Certified in various IT, volunteering, leadership, and educational training programs.</p>
+            </div>
+            <div class="achievement-highlight">
+                <i class="fa-solid fa-users highlight-icon"></i>
+                <h3>Youth Leadership</h3>
+                <p>Extensive experience coordinating youth initiatives and managing STEM activities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Languages -->
+    <section id="skills" class="skills">
+        <div class="container section-header">
+            <h2>Skills & Languages</h2>
+        </div>
+        <div class="container skills-grid">
+            <div class="skill-category">
+                <h3>Technical</h3>
+                <ul class="clean-list">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
                 </ul>
             </div>
-            <div class="card">
-                <h3>Soft Skills</h3>
-                <ul class="list-group">
-                    <li>Coordination & Teamwork</li>
-                    <li>Event Organization</li>
-                    <li>Public Communication & Collaboration</li>
+            <div class="skill-category">
+                <h3>Professional</h3>
+                <ul class="clean-list">
+                    <li>Teamwork</li>
+                    <li>Communication</li>
+                    <li>Event Coordination</li>
+                    <li>Organization</li>
+                    <li>Continuous Learning</li>
                 </ul>
             </div>
-            <div class="card">
+            <div class="skill-category">
                 <h3>Languages</h3>
-                <ul class="list-group">
+                <ul class="clean-list">
                     <li><strong>Uzbek:</strong> Native</li>
                     <li><strong>English:</strong> B2+</li>
                     <li><strong>Russian:</strong> B2+</li>
@@ -316,117 +301,86 @@
         </div>
     </section>
 
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="grid">
-            <div class="card">
-                <span class="tag">In Progress</span>
-                <h3>ExamLab</h3>
-                <p>An educational platform designed for IELTS and SAT mock tests.</p>
-                <ul class="list-group">
-                    <li><strong>Goal:</strong> Provide students with realistic exam practice.</li>
-                    <li><strong>Tech:</strong> HTML, CSS, JavaScript.</li>
-                    <li><strong>Features:</strong> Tests, score calculation, user system.</li>
-                </ul>
+    <!-- Beyond Coding (Hobbies) -->
+    <section id="beyond" class="beyond-coding">
+        <div class="container section-header text-center">
+            <h2>Beyond the screen, there is a whole world.</h2>
+        </div>
+        <div class="container hobby-grid">
+            <div class="hobby-card">
+                <i class="fa-solid fa-book-open"></i>
+                <p>Reading & Literature</p>
             </div>
-
-            <div class="card">
-                <span class="tag">Award Winner</span>
-                <h3>AI Health Tracker</h3>
-                <p>Healthcare technology project focused on health monitoring using AI.</p>
-                <ul class="list-group">
-                    <li><strong>Achievement:</strong> 2nd Place at IT Debate, IT Park Khiva.</li>
-                    <li><strong>Focus:</strong> Utilizing AI for personal health tracking.</li>
-                </ul>
+            <div class="hobby-card">
+                <i class="fa-solid fa-feather-pointed"></i>
+                <p>Poetry & Writing</p>
             </div>
-
-            <div class="card">
-                <span class="tag">EdTech Concept</span>
-                <h3>Ustoz SI</h3>
-                <p>EdTech AI concept for personalized learning experiences.</p>
-                <ul class="list-group">
-                    <li><strong>Goal:</strong> Identify weak points and recommend next steps.</li>
-                    <li><strong>Focus:</strong> AI, Personalized Learning, Education.</li>
-                </ul>
+            <div class="hobby-card">
+                <i class="fa-solid fa-earth-americas"></i>
+                <p>Learning Languages</p>
             </div>
-
-            <div class="card">
-                <span class="tag">Startup</span>
-                <h3>BemorOvozi</h3>
-                <p>A B2B/B2G platform for collecting and analyzing patient feedback.</p>
-                <ul class="list-group">
-                    <li><strong>Problem:</strong> Lack of systematic patient feedback.</li>
-                    <li><strong>Solution:</strong> Feedback analytics platform for hospitals.</li>
-                    <li><strong>Model:</strong> Monthly subscription based on size.</li>
-                </ul>
+            <div class="hobby-card">
+                <i class="fa-solid fa-utensils"></i>
+                <p>Cooking</p>
             </div>
-
-            <div class="card">
-                <span class="tag">Personal</span>
-                <h3>Qamar — Book Blog</h3>
-                <p>My personal project related to books, reading, and self-growth.</p>
-                <ul class="list-group">
-                    <li><strong>Focus:</strong> Web development, personal branding.</li>
-                    <li><strong>Link:</strong> bookblog-qamar.vercel.app</li>
-                </ul>
+            <div class="hobby-card">
+                <i class="fa-solid fa-film"></i>
+                <p>Turkish Dramas & Films</p>
+            </div>
+            <div class="hobby-card">
+                <i class="fa-solid fa-lightbulb"></i>
+                <p>Exploring New Ideas</p>
             </div>
         </div>
     </section>
 
-    <section id="experience">
-        <h2>Leadership & Experience</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Coordinator @ YouthCan</h3>
-                <p>Active participation in youth initiatives and team activities. Coordinated various projects aimed at youth development.</p>
-            </div>
-            <div class="card">
-                <h3>Organizer @ StemX</h3>
-                <p>Led STEM and technology initiatives. Organized large-scale events in collaboration with TATU Khorezm.</p>
-            </div>
-            <div class="card">
-                <h3>Coordinator @ Kitobxonlik</h3>
-                <p>Organized reading initiatives, book discussions, and activities to promote literature among peers.</p>
-            </div>
-            <div class="card">
-                <h3>Volunteering Impact</h3>
-                <ul class="list-group">
-                    <li>IT Community of Uzbekistan & IT Roadshow 2</li>
-                    <li>Khorezm Fest / Startup Fest</li>
-                    <li>"From Waste to Worth" Plogging Initiative</li>
-                    <li>Yashil Kelajak Camp</li>
-                </ul>
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container section-header">
+            <h2>Have an idea? Let's connect.</h2>
+            <p style="margin-top: 1rem; color: var(--text-secondary);">I'm always happy to connect with people who love learning, technology, and meaningful collaboration.</p>
+        </div>
+        <div class="container contact-grid">
+            <form id="contact-form" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <h3>Direct Links</h3>
+                <div class="social-links-vertical">
+                    <a href="mailto:your.email@example.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
+                    <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="achievements">
-        <h2>Achievements</h2>
-        <div class="card" style="max-width: 800px; margin: 0 auto;">
-            <ul class="list-group">
-                <li><strong>40+ Certificates</strong> in IT, Volunteering, Education, and Training.</li>
-                <li><strong>2nd Place Winner</strong> at IT Park Khiva IT Debate with the "AI Health Tracker" project.</li>
-                <li>Extensive coordination experience in youth initiatives and STEM activities.</li>
-                <li>Active participation in specialized IT and volunteering training programs.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Get In Touch</h2>
-        <div class="card" style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <p style="font-size: 1.1rem; margin-bottom: 2rem;">Let's connect! I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
-            <div class="btn-group">
-                <a href="mailto:your.email@example.com" class="btn btn-primary">Email Me</a>
-                <a href="#" class="btn btn-outline">GitHub</a>
-                <a href="#" class="btn btn-outline">LinkedIn</a>
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Oymonjon Ro'zmetova. Built with passion and code.</p>
+        <div class="container footer-content">
+            <div class="footer-moon"><i class="fa-solid fa-moon"></i></div>
+            <p>&copy; <span id="current-year"></span> Aymanjan Ro‘zmetova.</p>
+            <p class="tagline">Built with curiosity and purpose.</p>
+        </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
