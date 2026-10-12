@@ -2112,126 +2112,232 @@
             </div>
         </section>
 
-        <!-- ==================== CONTACT SECTION ==================== -->
-        <section id="contact">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-kicker">07 • Get in Touch</span>
-                    <h2 class="section-title">Have an idea? Let's connect.</h2>
-                    <p class="section-subtitle">I'm always happy to connect with people who love learning, technology, and meaningful collaboration.</p>
-                </div>
-
-                <div class="contact-grid">
-                    <div>
-                        <div class="contact-channels">
-                            <a href="mailto:rozmetovaoymonjon@gmail.com" class="channel-card">
-                                <div class="channel-left">
-                                    <div class="channel-icon"><i class="fa-solid fa-envelope"></i></div>
-                                    <div>
-                                        <span class="channel-label">Email</span>
-                                        <span class="channel-handle">rozmetovaoymonjon@gmail.com</span>
-                                    </div>
-                                </div>
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-
-                            <a href="https://github.com/oynuta" target="_blank" rel="noopener noreferrer" class="channel-card">
-                                <div class="channel-left">
-                                    <div class="channel-icon"><i class="fa-brands fa-github"></i></div>
-                                    <div>
-                                        <span class="channel-label">GitHub</span>
-                                        <span class="channel-handle">github.com/oynuta</span>
-                                    </div>
-                                </div>
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-
-                            <a href="https://www.linkedin.com/in/oymonjan-ro-zmetova-162999344/" target="_blank" rel="noopener noreferrer" class="channel-card">
-                                <div class="channel-left">
-                                    <div class="channel-icon"><i class="fa-brands fa-linkedin-in"></i></div>
-                                    <div>
-                                        <span class="channel-label">LinkedIn</span>
-                                        <span class="channel-handle">Oymonjon Ro‘zmetova</span>
-                                    </div>
-                                </div>
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-
-                            <a href="https://t.me/rzmetvva" target="_blank" rel="noopener noreferrer" class="channel-card">
-                                <div class="channel-left">
-                                    <div class="channel-icon"><i class="fa-brands fa-telegram"></i></div>
-                                    <div>
-                                        <span class="channel-label">Telegram</span>
-                                        <span class="channel-handle">@rzmetvva</span>
-                                    </div>
-                                </div>
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-                        </div>
-
-                        <!-- Telegram QR Card -->
-                        <div class="tg-qr-box">
-                            <div class="tg-qr-info">
-                                <h4><i class="fa-brands fa-telegram" style="color: var(--accent);"></i> Telegram QR Card</h4>
-                                <p>Scan or view my @RZMETVVA QR code directly.</p>
-                            </div>
-                            <button type="button" class="btn btn-outline" id="open-qr-btn" style="padding: 9px 18px; font-size: 0.85rem;">
-                                <i class="fa-solid fa-qrcode"></i> View QR
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Functional Mailto Contact Form -->
-                    <div class="contact-form-card">
-                        <form id="contact-form">
-                            <div class="form-group">
-                                <label for="sender-name">Your Name</label>
-                                <input type="text" id="sender-name" class="form-control" placeholder="Enter your name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="sender-email">Your Email</label>
-                                <input type="email" id="sender-email" class="form-control" placeholder="name@example.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="sender-subject">Subject</label>
-                                <input type="text" id="sender-subject" class="form-control" placeholder="Project collaboration / Inquiry" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="sender-message">Message</label>
-                                <textarea id="sender-message" rows="4" class="form-control" placeholder="Write your message here..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">
-                                <i class="fa-solid fa-paper-plane"></i>
-                                <span>Prepare Email to Oymonjon</span>
-                            </button>
-                            <p class="form-note">
-                                Submitting opens your email client pre-addressed to <strong>rozmetovaoymonjon@gmail.com</strong>.
-                            </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ==================== TELEGRAM QR MODAL ==================== -->
-    <div class="modal-backdrop" id="qr-modal" aria-hidden="true">
-        <div class="qr-modal-card" role="dialog" aria-labelledby="qr-title">
-            <button class="qr-close-btn" id="close-qr-btn" aria-label="Close QR modal">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="qr-avatar-badge">
-                <i class="fa-solid fa-moon"></i>
-            </div>
-            <div class="qr-visual-box">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://t.me/rzmetvva&color=6D28D9&bgcolor=FAF8F5" alt="Telegram QR code for @rzmetvva">
-            </div>
-            <div class="qr-username" id="qr-title">@RZMETVVA</div>
-            <a href="https://t.me/rzmetvva" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; background: linear-gradient(90deg, #3B82F6, #9333EA); color: #fff;">
-                <i class="fa-brands fa-telegram"></i> Open in Telegram
-            </a>
+       <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container section-header" style="text-align: center;">
+            <h2>Have an idea? Let's connect.</h2>
+            <p style="margin-top: 1rem; color: var(--text-muted);">I'm always happy to connect with people who love learning, technology, and meaningful collaboration.</p>
         </div>
-    </div>
+        
+        <div class="container" style="max-width: 800px; margin: 0 auto;">
+            <div class="contact-links-grid">
+                <!-- Email -->
+                <a href="mailto:rozmetovaoymonjon@gmail.com" class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="contact-details">
+                        <span class="contact-label">EMAIL</span>
+                        <span class="contact-value">rozmetovaoymonjon@gmail.com</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/oynuta" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
+                    <div class="contact-details">
+                        <span class="contact-label">GITHUB</span>
+                        <span class="contact-value">github.com/oynuta</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/oymonjan-ro-zmetova-162999344/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <div class="contact-icon"><i class="fa-brands fa-linkedin"></i></div>
+                    <div class="contact-details">
+                        <span class="contact-label">LINKEDIN</span>
+                        <span class="contact-value">Oymonjon Ro'zmetova</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+                </a>
+
+                <!-- Telegram -->
+                <a href="https://t.me/rzmetvva" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <div class="contact-icon"><i class="fa-brands fa-telegram"></i></div>
+                    <div class="contact-details">
+                        <span class="contact-label">TELEGRAM</span>
+                        <span class="contact-value">@rzmetvva</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+                </a>
+            </div>
+
+            <!-- Telegram QR Banner -->
+            <div class="qr-banner" onclick="openModal()">
+                <div class="qr-banner-content">
+                    <div class="qr-icon"><i class="fa-brands fa-telegram" style="color: var(--accent, #8b5cf6); font-size: 1.5rem;"></i></div>
+                    <div>
+                        <h4 style="margin: 0; color: #fff; font-size: 1.1rem;">Telegram QR Card</h4>
+                        <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">Scan or view my @RZMETVVA QR code directly.</p>
+                    </div>
+                </div>
+                <button class="btn-qr"><i class="fa-solid fa-qrcode"></i> View QR</button>
+            </div>
+        </div>
+
+        <!-- QR Modal -->
+        <div id="qrModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3 style="color: #fff; margin-bottom: 0.5rem;">My Telegram</h3>
+                <p style="color: var(--accent, #8b5cf6); margin-bottom: 1rem;">@rzmetvva</p>
+                <!-- QR rasm ulandi -->
+                <img src="assets/image_6f8b2f.png" alt="Telegram QR Code" style="width: 100%; max-width: 250px; border-radius: 12px; margin-top: 5px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Ushbu CSS va JS ni ham pastga, head yoki body oxiriga qo'shing -->
+    <style>
+        .contact-links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        @media(max-width: 650px) {
+            .contact-links-grid { grid-template-columns: 1fr; }
+            .qr-banner { flex-direction: column; text-align: center; gap: 1rem; }
+        }
+        .contact-card {
+            background-color: var(--card-bg, #1e293b);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-main, #f8fafc);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent, #8b5cf6);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .contact-icon {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent, #8b5cf6);
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-label {
+            font-size: 0.75rem;
+            color: var(--text-muted, #94a3b8);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .contact-value {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .external-icon {
+            position: absolute;
+            right: 1.5rem;
+            color: var(--text-muted, #94a3b8);
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .contact-card:hover .external-icon {
+            opacity: 1;
+        }
+        .qr-banner {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .qr-banner:hover {
+            border-color: var(--accent, #8b5cf6);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .qr-banner-content {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .btn-qr {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-qr:hover { background: rgba(255,255,255,0.15); }
+        
+        /* Modal Style */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: var(--card-bg, #1e293b);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #94a3b8;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close:hover { color: #fff; }
+    </style>
+
+    <script>
+        function openModal() { document.getElementById('qrModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('qrModal').style.display = 'none'; }
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('qrModal')) closeModal();
+        }
+    </script>
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="site-footer">
