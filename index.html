@@ -1,386 +1,2392 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oymonjon Ro‘zmetova | Portfolio</title>
-    <meta name="description" content="Portfolio of Aymanjan Ro‘zmetova - Student, Developer, and Volunteer from Khiva, Uzbekistan.">
+    <meta name="description" content="Personal portfolio of Oymonjon Ro‘zmetova — 11th-grade student from Khiva, Uzbekistan passionate about technology, software development, volunteering, and leadership.">
     
-    <!-- Fonts -->
+    <!-- Google Fonts: Editorial Serif + Clean Tech Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Theme Initialization to prevent FOUC (Flash of Unstyled Content) -->
+    <!-- Theme Initialization -->
     <script>
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        (function() {
+            const savedTheme = localStorage.getItem('qamar-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
     </script>
+
+    <style>
+        /* =========================================
+           1. THEME VARIABLES (DARK & LIGHT MODE)
+           ========================================= */
+        :root[data-theme="light"] {
+            --bg-primary: #FAF8F5;
+            --bg-secondary: #FFFFFF;
+            --bg-elevated: #F3EFEA;
+            --text-primary: #18181B;
+            --text-secondary: #52525B;
+            --text-muted: #71717A;
+            --accent: #6D28D9;
+            --accent-soft: #8B5CF6;
+            --accent-glow: rgba(109, 40, 217, 0.18);
+            --accent-surface: rgba(109, 40, 217, 0.08);
+            --border-color: #E4E4E7;
+            --card-shadow: 0 12px 32px -8px rgba(24, 24, 27, 0.06);
+            --nav-bg: rgba(250, 248, 245, 0.85);
+            --star-color: #7C3AED;
+            --moon-halo: radial-gradient(circle, rgba(139, 92, 246, 0.16) 0%, rgba(250, 248, 245, 0) 70%);
+        }
+
+        :root[data-theme="dark"] {
+            --bg-primary: #0B0F19;
+            --bg-secondary: #131B2E;
+            --bg-elevated: #1A243D;
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --accent: #A78BFA;
+            --accent-soft: #C4B5FD;
+            --accent-glow: rgba(167, 139, 250, 0.28);
+            --accent-surface: rgba(167, 139, 250, 0.12);
+            --border-color: rgba(255, 255, 255, 0.09);
+            --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
+            --nav-bg: rgba(11, 15, 25, 0.82);
+            --star-color: #DDD6FE;
+            --moon-halo: radial-gradient(circle, rgba(167, 139, 250, 0.22) 0%, rgba(11, 15, 25, 0) 70%);
+        }
+
+        /* =========================================
+           2. BASE & RESET
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 84px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+            transition: background-color 0.35s ease, color 0.35s ease;
+        }
+
+        h1, h2, h3, .serif-heading {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 96px 0;
+            position: relative;
+        }
+
+        /* =========================================
+           3. NAVIGATION BAR
+           ========================================= */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 76px;
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-logo .moon-icon {
+            color: var(--accent);
+            font-size: 1.15rem;
+            transform: rotate(-15deg);
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.25s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.25s ease;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .mobile-toggle {
+            display: none;
+        }
+
+        /* =========================================
+           4. HERO SECTION & GLOWING STARDUST PORTRAIT
+           ========================================= */
+        .hero {
+            min-height: 100vh;
+            padding-top: 130px;
+            padding-bottom: 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .eyebrow-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--accent-surface);
+            border: 1px solid var(--accent-glow);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .eyebrow-badge .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+            animation: pulseGlow 2s infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 4.6vw, 4.1rem);
+            margin-bottom: 22px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .hero-lead {
+            font-size: 1.12rem;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin-bottom: 34px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 26px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #FFFFFF;
+            box-shadow: 0 8px 22px -4px var(--accent-glow);
+        }
+
+        :root[data-theme="dark"] .btn-primary {
+            color: #0B0F19;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-soft);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 26px -4px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-socials {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hero-socials span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-right: 4px;
+        }
+
+        .social-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 999px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            font-size: 0.86rem;
+            color: var(--text-secondary);
+        }
+
+        .social-pill:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ======================================================
+           REDESIGNED PORTRAIT FRAME WITH GLOWING TWINKLING DOTS
+           ====================================================== */
+        .portrait-stage {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 36px;
+        }
+
+        /* Ambient Moon Halo Behind Portrait */
+        .moon-aura {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: var(--moon-halo);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Rotating Dashed Celestial Orbit Ring */
+        .orbital-ring {
+            position: absolute;
+            width: 370px;
+            height: 450px;
+            border-radius: 190px;
+            border: 1px dashed var(--accent-glow);
+            transform: rotate(-8deg);
+            z-index: 1;
+            pointer-events: none;
+            animation: slowOrbit 28s linear infinite;
+        }
+
+        .orbital-ring-secondary {
+            position: absolute;
+            width: 390px;
+            height: 465px;
+            border-radius: 200px;
+            border: 1px solid var(--border-color);
+            transform: rotate(6deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Glowing Twinkling Dots (Yulduzchalar / Nuqtachalar) */
+        .sparkle-dot {
+            position: absolute;
+            border-radius: 50%;
+            background-color: var(--star-color);
+            box-shadow: 0 0 10px 2px var(--accent), 0 0 20px 4px var(--accent-glow);
+            z-index: 4;
+            pointer-events: none;
+            animation: twinkleDot 3.2s ease-in-out infinite;
+        }
+
+        .sparkle-dot.d1 { width: 8px; height: 8px; top: 8%; left: 14%; animation-delay: 0s; }
+        .sparkle-dot.d2 { width: 6px; height: 6px; top: 18%; right: 8%; animation-delay: 0.7s; }
+        .sparkle-dot.d3 { width: 10px; height: 10px; bottom: 22%; left: 6%; animation-delay: 1.4s; }
+        .sparkle-dot.d4 { width: 7px; height: 7px; bottom: 12%; right: 12%; animation-delay: 2.1s; }
+        .sparkle-dot.d5 { width: 5px; height: 5px; top: 48%; right: 3%; animation-delay: 0.4s; }
+        .sparkle-dot.d6 { width: 6px; height: 6px; top: 36%; left: 8%; animation-delay: 1.8s; }
+        .sparkle-dot.d7 { width: 9px; height: 9px; top: 6%; right: 24%; animation-delay: 1.1s; }
+        .sparkle-dot.d8 { width: 5px; height: 5px; bottom: 6%; left: 28%; animation-delay: 2.5s; }
+
+        /* Crescent Moon Badge on Frame Corner */
+        .crescent-float {
+            position: absolute;
+            top: 22px;
+            right: 26px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.15rem;
+            z-index: 5;
+            animation: floatUpDown 4s ease-in-out infinite;
+        }
+
+        /* Main Portrait Card Frame */
+        .portrait-frame {
+            position: relative;
+            z-index: 3;
+            width: 320px;
+            height: 410px;
+            border-radius: 160px 160px 28px 28px;
+            padding: 10px;
+            background: linear-gradient(145deg, var(--accent-glow), transparent 60%);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow), 0 0 35px var(--accent-glow);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portrait-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 150px 150px 20px 20px;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portrait-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .portrait-frame:hover .portrait-img {
+            transform: scale(1.03);
+        }
+
+        /* Stylish Fallback Placeholder When Photo Is Not Yet Added */
+        .portrait-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 28px;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 30%, var(--accent-surface), var(--bg-secondary));
+        }
+
+        .portrait-placeholder .placeholder-avatar-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--accent-surface);
+            border: 1px dashed var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .portrait-placeholder h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+
+        .portrait-placeholder p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            line-height: 1.45;
+        }
+
+        .upload-photo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s ease;
+        }
+
+        :root[data-theme="dark"] .upload-photo-btn {
+            color: #0B0F19;
+        }
+
+        .upload-photo-btn:hover {
+            transform: scale(1.04);
+        }
+
+        .change-photo-FloatingBtn {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            z-index: 6;
+            background: var(--nav-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .portrait-inner.has-image:hover .change-photo-FloatingBtn {
+            display: inline-flex;
+        }
+
+        @keyframes twinkleDot {
+            0%, 100% {
+                opacity: 0.25;
+                transform: scale(0.75);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.35);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.45; transform: scale(1.25); }
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-7px); }
+        }
+
+        @keyframes slowOrbit {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* =========================================
+           5. SECTION HEADERS
+           ========================================= */
+        .section-header {
+            margin-bottom: 52px;
+        }
+
+        .section-header.centered {
+            text-align: center;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-kicker {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            margin-bottom: 14px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+        }
+
+        /* =========================================
+           6. ABOUT SECTION
+           ========================================= */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.35fr 0.85fr;
+            gap: 44px;
+            align-items: start;
+        }
+
+        .about-narrative p {
+            font-size: 1.06rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .about-narrative p strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .editorial-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        .editorial-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .editorial-card h3 i {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .fact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .fact-item {
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .fact-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .fact-label {
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .fact-value {
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* =========================================
+           7. PROJECTS SECTION
+           ========================================= */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+        }
+
+        .project-thumb {
+            height: 175px;
+            background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--accent-surface) 100%);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .project-thumb-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            box-shadow: var(--card-shadow);
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .status-badge.completed {
+            color: #10B981;
+            border-color: rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .status-badge.progress {
+            color: #F59E0B;
+            border-color: rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .status-badge.concept {
+            color: var(--accent);
+            border-color: var(--accent-glow);
+            background: var(--accent-surface);
+        }
+
+        .project-body {
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-category {
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .project-desc {
+            font-size: 0.94rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .tech-pill {
+            font-size: 0.76rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+        }
+
+        .project-link:hover {
+            gap: 10px;
+        }
+
+        /* =========================================
+           8. EXPERIENCE & LEADERSHIP TIMELINE
+           ========================================= */
+        .timeline-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 32px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-card {
+            position: relative;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 26px 28px;
+            margin-bottom: 24px;
+            box-shadow: var(--card-shadow);
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -41px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .timeline-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-role {
+            font-size: 1.22rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .timeline-org {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .timeline-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: var(--bg-elevated);
+        }
+
+        .timeline-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .volunteer-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .volunteer-tag {
+            font-size: 0.82rem;
+            padding: 6px 13px;
+            border-radius: 999px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        /* =========================================
+           9. ACHIEVEMENTS & FILTERABLE CERTIFICATES
+           ========================================= */
+        .highlights-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .highlight-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--accent-surface);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .highlight-box p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .filter-btn {
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-size: 0.86rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--accent);
+            color: #FFFFFF;
+            border-color: var(--accent);
+        }
+
+        :root[data-theme="dark"] .filter-btn.active,
+        :root[data-theme="dark"] .filter-btn:hover {
+            color: #0B0F19;
+            font-weight: 600;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 22px;
+            transition: all 0.25s ease;
+        }
+
+        .cert-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .cert-badge {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .cert-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .cert-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* =========================================
+           10. SKILLS & LANGUAGES
+           ========================================= */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 28px;
+        }
+
+        .skill-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .skill-box h3 {
+            font-size: 1.35rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-box h3 i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-pill {
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .lang-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lang-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: var(--bg-elevated);
+        }
+
+        .lang-name {
+            font-weight: 500;
+            font-size: 0.94rem;
+        }
+
+        .lang-level {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: var(--accent-surface);
+            color: var(--accent);
+        }
+
+        /* =========================================
+           11. BEYOND CODING (HOBBIES)
+           ========================================= */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        .hobby-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 26px;
+            transition: all 0.25s ease;
+        }
+
+        .hobby-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .hobby-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--accent-surface);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+
+        .hobby-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.18rem;
+            margin-bottom: 6px;
+        }
+
+        .hobby-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* =========================================
+           12. CONTACT SECTION & TELEGRAM QR CARD
+           ========================================= */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 44px;
+            align-items: start;
+        }
+
+        .contact-channels {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .channel-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 22px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            transition: all 0.25s ease;
+        }
+
+        .channel-card:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .channel-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .channel-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--accent-surface);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+        }
+
+        .channel-label {
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .channel-handle {
+            font-size: 0.96rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            word-break: break-all;
+        }
+
+        /* Stylized Telegram QR Trigger Card */
+        .tg-qr-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(168, 85, 247, 0.15));
+            border: 1px solid var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .tg-qr-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .tg-qr-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-form-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            padding: 36px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.86rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.25s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        /* =========================================
+           13. TELEGRAM QR MODAL
+           ========================================= */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 8, 17, 0.78);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .qr-modal-card {
+            background: #FFFFFF;
+            color: #18181B;
+            width: 100%;
+            max-width: 360px;
+            border-radius: 28px;
+            padding: 32px 26px 26px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+        }
+
+        .qr-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: none;
+            background: #F4F4F5;
+            color: #18181B;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .qr-avatar-badge {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            margin: -58px auto 14px;
+            background: radial-gradient(circle, #334155 0%, #090D16 100%);
+            border: 4px solid #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #E2E8F0;
+            font-size: 1.65rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        .qr-visual-box {
+            padding: 18px;
+            border-radius: 22px;
+            background: #FAF8F5;
+            border: 2px dashed rgba(139, 92, 246, 0.35);
+            margin-bottom: 16px;
+        }
+
+        .qr-visual-box img {
+            width: 210px;
+            height: 210px;
+            margin: 0 auto;
+            border-radius: 12px;
+        }
+
+        .qr-username {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #3B82F6, #A855F7, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 14px;
+        }
+
+        /* =========================================
+           14. FOOTER
+           ========================================= */
+        .site-footer {
+            padding: 56px 0 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-moon-divider {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .footer-moon-divider::before,
+        .footer-moon-divider::after {
+            content: '';
+            width: 45px;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        /* =========================================
+           15. RESPONSIVE BREAKPOINTS
+           ========================================= */
+        @media (max-width: 960px) {
+            .hero-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 110px;
+                text-align: center;
+            }
+
+            .hero-lead {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-cta-group,
+            .hero-socials {
+                justify-content: center;
+            }
+
+            .portrait-stage {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: inline-flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 76px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-secondary);
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: column;
+                padding: 24px;
+                gap: 18px;
+                transform: translateY(-150%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .portrait-frame {
+                width: 270px;
+                height: 350px;
+            }
+
+            .orbital-ring,
+            .orbital-ring-secondary {
+                width: 310px;
+                height: 380px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">O/R</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#achievements">Achievements</a></li>
-                <li><a href="#beyond">Beyond Coding</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button id="theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fa-solid fa-moon"></i>
+    <!-- ==================== NAVIGATION ==================== -->
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="#home" class="brand-logo" aria-label="Oymonjon Ro‘zmetova Home">
+                <i class="fa-solid fa-moon moon-icon"></i>
+                <span>OR.</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#beyond">Beyond Coding</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="theme-toggle" aria-label="Switch color theme" title="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-sun" id="theme-icon"></i>
                 </button>
-                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                <button class="icon-btn mobile-toggle" id="mobile-toggle" aria-label="Open navigation menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <span class="label">STUDENT • DEVELOPER • VOLUNTEER</span>
-                <h1>Curious mind. <br><em>Creative spirit.</em> <br>Building with purpose.</h1>
-                <p>Hi, I'm Oymonjon — a student passionate about technology, meaningful projects, and creating solutions that make a difference.</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">Explore My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+    <main>
+        <!-- ==================== HERO SECTION ==================== -->
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <!-- Left Column -->
+                <div class="hero-copy">
+                    <div class="eyebrow-badge">
+                        <span class="pulse-dot"></span>
+                        <span>STUDENT • DEVELOPER • VOLUNTEER</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Curious mind.<br>
+                        <em>Creative spirit.</em><br>
+                        Building with purpose.
+                    </h1>
+
+                    <p class="hero-lead">
+                        Hi, I'm <strong>Oymonjon Ro‘zmetova</strong> — an 11th-grade student from Khiva passionate about technology, meaningful projects, and creating solutions that make a difference.
+                    </p>
+
+                    <div class="hero-cta-group">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>Explore My Work</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <span>Get in Touch</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-socials">
+                        <span>Connect:</span>
+                        <a href="https://github.com/oynuta" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                            <span>@oynuta</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/oymonjan-ro-zmetova-162999344/" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://t.me/rzmetvva" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                            <span>@rzmetvva</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="social-links">
-                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+
+                <!-- Right Column: Celestial Portrait Frame with Glowing Twinkling Dots -->
+                <div class="portrait-stage">
+                    <div class="moon-aura"></div>
+                    <div class="orbital-ring"></div>
+                    <div class="orbital-ring-secondary"></div>
+
+                    <!-- Glowing Twinkling Dots (Yonib turadigan chiroyli nuqtachalar) -->
+                    <span class="sparkle-dot d1"></span>
+                    <span class="sparkle-dot d2"></span>
+                    <span class="sparkle-dot d3"></span>
+                    <span class="sparkle-dot d4"></span>
+                    <span class="sparkle-dot d5"></span>
+                    <span class="sparkle-dot d6"></span>
+                    <span class="sparkle-dot d7"></span>
+                    <span class="sparkle-dot d8"></span>
+
+                    <!-- Floating Moon Badge -->
+                    <div class="crescent-float" title="Qamar — Moon">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+
+                    <div class="portrait-frame">
+                        <div class="portrait-inner" id="portrait-inner">
+                            <!-- Easy-to-replace image: put your photo at assets/profile.jpg OR click "Choose Photo" to preview right away -->
+                            <img 
+                                src="assets/profile.jpg" 
+                                alt="Oymonjon Ro‘zmetova" 
+                                class="portrait-img" 
+                                id="profile-img"
+                                onerror="this.style.display='none'; document.getElementById('portrait-placeholder').style.display='flex';"
+                                onload="this.style.display='block'; document.getElementById('portrait-placeholder').style.display='none'; document.getElementById('portrait-inner').classList.add('has-image');"
+                            >
+
+                            <!-- Stylish Placeholder if assets/profile.jpg is not found yet -->
+                            <div class="portrait-placeholder" id="portrait-placeholder">
+                                <div class="placeholder-avatar-icon">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                                <h4>Oymonjon Ro‘zmetova</h4>
+                                <p>Place your photo as <code>assets/profile.jpg</code> or select a photo below to preview instantly.</p>
+                                <button type="button" class="upload-photo-btn" onclick="document.getElementById('photo-input').click()">
+                                    <i class="fa-solid fa-camera"></i> Select My Photo
+                                </button>
+                            </div>
+
+                            <button type="button" class="change-photo-FloatingBtn" onclick="document.getElementById('photo-input').click()">
+                                <i class="fa-solid fa-camera"></i> Change
+                            </button>
+                            <input type="file" id="photo-input" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image-wrapper">
-                <div class="moon-decoration"></div>
-                <!-- INSTRUCTION: Replace 'assets/profile.jpg' with your actual photo -->
-                <img src="photo/photo_2026-10-10_15-43-46.jpg" alt="Aymanjan Ro‘zmetova" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Aymanjan+R&size=600&background=F3F4F6&color=1F2937&font-size=0.33'">
+        </section>
+
+        <!-- ==================== ABOUT ME ==================== -->
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">01 • Introduction</span>
+                    <h2 class="section-title">A little about me</h2>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-narrative">
+                        <p>
+                            Hi! I'm <strong>Oymonjon Ro‘zmetova</strong>, an 11th-grade student from historic <strong>Khiva, Uzbekistan</strong>, with a deep curiosity for technology, software development, education, and social innovation.
+                        </p>
+                        <p>
+                            I'm passionate about using technology to solve real-world problems and building projects that bring genuine value to people. Alongside my journey in IT, I actively participate in volunteering, coordinate youth and STEM initiatives, and thrive on collaborating with ambitious learners.
+                        </p>
+                        <p>
+                            Beyond the screen, I'm an avid reader, a dedicated language learner, and someone who enjoys poetry, cooking, and exploring new perspectives. My long-term goal is to grow into a skilled technology professional and build solutions that create a lasting positive impact on society.
+                        </p>
+                    </div>
+
+                    <aside class="editorial-card">
+                        <h3><i class="fa-solid fa-sparkles"></i> Quick Profile</h3>
+                        <div class="fact-list">
+                            <div class="fact-item">
+                                <span class="fact-label">Based in</span>
+                                <span class="fact-value">Khiva, Uzbekistan</span>
+                            </div>
+                            <div class="fact-item">
+                                <span class="fact-label">Current Stage</span>
+                                <span class="fact-value">11th Grade Student &amp; IT Park Learner</span>
+                            </div>
+                            <div class="fact-item">
+                                <span class="fact-label">Core Interests</span>
+                                <span class="fact-value">Software Development, EdTech, Healthcare AI &amp; Youth Leadership</span>
+                            </div>
+                            <div class="fact-item">
+                                <span class="fact-label">Languages</span>
+                                <span class="fact-value">Uzbek, English, Russian, Turkish, Azerbaijani</span>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Me -->
-    <section id="about" class="about">
-        <div class="container section-header">
-            <h2>A little about me</h2>
-        </div>
-        <div class="container about-grid">
-            <div class="about-text">
-                <p>I am an 11th-grade student from Khiva, Uzbekistan, with a profound interest in technology, software development, education, and innovation. I believe in the power of continuous learning, meaningful collaboration, and using technology to solve real-world problems.</p>
-                <p>My journey isn't just about code. I actively volunteer, coordinate youth initiatives, and love working with people. Whether I'm reading a new book, learning a new language, or exploring ideas beyond the tech sphere, I am driven by a desire to create a positive impact on society.</p>
+        <!-- ==================== PROJECTS ==================== -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">02 • Selected Work</span>
+                    <h2 class="section-title">Projects &amp; Initiatives</h2>
+                    <p class="section-subtitle">A curated collection of my web projects, competition entries, and startup concepts.</p>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Project 1: Qamar Book Blog -->
+                    <article class="project-card">
+                        <div class="project-thumb">
+                            <div class="project-thumb-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                            <span class="status-badge completed">Live Project</span>
+                        </div>
+                        <div class="project-body">
+                            <span class="project-category">Personal Web Project</span>
+                            <h3 class="project-title">Qamar — Book Blog</h3>
+                            <p class="project-desc">
+                                A personal book-related web project inspired by my love for reading, literature reviews, and thoughtful reflection.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-pill">HTML</span>
+                                <span class="tech-pill">CSS</span>
+                                <span class="tech-pill">JavaScript</span>
+                                <span class="tech-pill">Vercel</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="https://bookblog-qamar.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">
+                                    <span>Visit Live Site</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="https://github.com/oynuta" target="_blank" rel="noopener noreferrer" class="project-link">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: ExamLab -->
+                    <article class="project-card">
+                        <div class="project-thumb">
+                            <div class="project-thumb-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                            <span class="status-badge progress">In Progress</span>
+                        </div>
+                        <div class="project-body">
+                            <span class="project-category">Web Development • EdTech</span>
+                            <h3 class="project-title">ExamLab</h3>
+                            <p class="project-desc">
+                                An educational platform designed for IELTS and SAT mock tests, giving students realistic exam practice, score calculation, and user tracking.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-pill">HTML</span>
+                                <span class="tech-pill">CSS</span>
+                                <span class="tech-pill">JavaScript</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="https://github.com/oynuta" target="_blank" rel="noopener noreferrer" class="project-link">
+                                    <span>View on GitHub</span>
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3: AI Health Tracker -->
+                    <article class="project-card">
+                        <div class="project-thumb">
+                            <div class="project-thumb-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                            <span class="status-badge completed">2nd Place Winner</span>
+                        </div>
+                        <div class="project-body">
+                            <span class="project-category">Competition Project • Healthcare Tech</span>
+                            <h3 class="project-title">AI Health Tracker</h3>
+                            <p class="project-desc">
+                                A healthcare technology project focused on AI-assisted health monitoring. Awarded 2nd place during the IT Debate at IT Park Khiva.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-pill">Healthcare AI</span>
+                                <span class="tech-pill">IT Park Khiva</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="#achievements" class="project-link">
+                                    <span>See Achievement</span>
+                                    <i class="fa-solid fa-award"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 4: Ustoz SI -->
+                    <article class="project-card">
+                        <div class="project-thumb">
+                            <div class="project-thumb-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <span class="status-badge concept">Concept</span>
+                        </div>
+                        <div class="project-body">
+                            <span class="project-category">AI Education Concept</span>
+                            <h3 class="project-title">Ustoz SI</h3>
+                            <p class="project-desc">
+                                An AI-powered personalized learning concept designed to pinpoint topics where students struggle and recommend tailored next steps for teachers.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-pill">AI in Education</span>
+                                <span class="tech-pill">Personalized Learning</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="#contact" class="project-link">
+                                    <span>Discuss Concept</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 5: BemorOvozi -->
+                    <article class="project-card">
+                        <div class="project-thumb">
+                            <div class="project-thumb-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                            <span class="status-badge concept">Startup Concept</span>
+                        </div>
+                        <div class="project-body">
+                            <span class="project-category">B2B / B2G Healthcare Concept</span>
+                            <h3 class="project-title">BemorOvozi</h3>
+                            <p class="project-desc">
+                                A healthcare feedback and analytics platform concept built to help hospitals systematically gather patient insights and improve care quality.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-pill">B2B / B2G SaaS</span>
+                                <span class="tech-pill">Patient Analytics</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="#contact" class="project-link">
+                                    <span>Inquire</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
-            <div class="about-fact-card">
-                <h3>Quick Facts</h3>
-                <ul>
-                    <li><strong>Based in:</strong> Khiva, Uzbekistan</li>
-                    <li><strong>Current stage:</strong> 11th grade</li>
-                    <li><strong>Interests:</strong> Technology, education, and innovation</li>
-                    <li><strong>Languages:</strong> Uzbek, English, Russian, Turkish, Azerbaijani</li>
-                </ul>
+        </section>
+
+        <!-- ==================== EXPERIENCE & LEADERSHIP ==================== -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-kicker">03 • Community &amp; Impact</span>
+                    <h2 class="section-title">Experience &amp; Leadership</h2>
+                    <p class="section-subtitle">Volunteering, organizing youth initiatives, and contributing to Uzbekistan's growing tech ecosystem.</p>
+                </div>
+
+                <div class="timeline-wrapper">
+                    <div class="timeline-card">
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-role">Coordinator</h3>
+                                <span class="timeline-org">YouthCan</span>
+                            </div>
+                            <span class="timeline-meta">Youth Leadership</span>
+                        </div>
+                        <p class="timeline-desc">
+                            Coordinating youth-led initiatives, fostering teamwork, and supporting community engagement programs for peers.
+                        </p>
+                    </div>
+
+                    <div class="timeline-card">
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-role">Coordinator &amp; Organizer</h3>
+                                <span class="timeline-org">StemX (in collaboration with TATU Khorezm)</span>
+                            </div>
+                            <span class="timeline-meta">STEM &amp; Technology</span>
+                        </div>
+                        <p class="timeline-desc">
+                            Organizing STEM and technology-focused events and educational initiatives associated with TATU Khorezm.
+                        </p>
+                    </div>
+
+                    <div class="timeline-card">
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-role">Coordinator</h3>
+                                <span class="timeline-org">Kitobxonlik</span>
+                            </div>
+                            <span class="timeline-meta">Literacy &amp; Culture</span>
+                        </div>
+                        <p class="timeline-desc">
+                            Leading book-reading initiatives and literary discussions to inspire a strong reading culture among youth.
+                        </p>
+                    </div>
+
+                    <div class="timeline-card">
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-role">Student &amp; Community Member</h3>
+                                <span class="timeline-org">IT Park Khiva</span>
+                            </div>
+                            <span class="timeline-meta">Software &amp; Innovation</span>
+                        </div>
+                        <p class="timeline-desc">
+                            Studying web development, building practical projects, and actively participating in regional IT debates and tech competitions.
+                        </p>
+                    </div>
+
+                    <div class="timeline-card">
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-role">Active Volunteer &amp; Participant</h3>
+                                <span class="timeline-org">Regional &amp; National Initiatives</span>
+                            </div>
+                            <span class="timeline-meta">Volunteering</span>
+                        </div>
+                        <p class="timeline-desc">
+                            Supporting guest navigation, photo zones, event stations, environmental plogging, and youth camps across Khorezm:
+                        </p>
+                        <div class="volunteer-tags">
+                            <span class="volunteer-tag">IT Community of Uzbekistan</span>
+                            <span class="volunteer-tag">IT Roadshow 2</span>
+                            <span class="volunteer-tag">Khorezm Fest / Startup Fest</span>
+                            <span class="volunteer-tag">“From Waste to Worth” Plogging</span>
+                            <span class="volunteer-tag">Yashil Kelajak Camp</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <!-- ==================== ACHIEVEMENTS & CERTIFICATES ==================== -->
+        <section id="achievements">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-kicker">04 • Milestones</span>
+                    <h2 class="section-title">Achievements &amp; Certificates</h2>
+                    <p class="section-subtitle">Recognitions across technology competitions, leadership programs, and community service.</p>
+                </div>
+
+                <div class="highlights-row">
+                    <div class="highlight-box">
+                        <div class="highlight-icon"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <h3>2nd Place — IT Debate</h3>
+                            <p>Awarded 2nd place at IT Park Khiva's IT Debate with the <strong>AI Health Tracker</strong> project.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <div class="highlight-icon"><i class="fa-solid fa-award"></i></div>
+                        <div>
+                            <h3>40+ Certificates</h3>
+                            <p>Earned over 40 certificates across IT, software training, youth leadership, and volunteering programs.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <div class="highlight-icon"><i class="fa-solid fa-people-group"></i></div>
+                        <div>
+                            <h3>Community Coordinator</h3>
+                            <p>Proven track record coordinating events with YouthCan, StemX, Kitobxonlik, and regional tech festivals.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filterable Certificate Gallery -->
+                <div class="filter-bar" role="tablist" aria-label="Certificate categories">
+                    <button class="filter-btn active" data-filter="all">All Highlights</button>
+                    <button class="filter-btn" data-filter="tech">IT &amp; Technology</button>
+                    <button class="filter-btn" data-filter="leadership">Volunteering &amp; Leadership</button>
+                    <button class="filter-btn" data-filter="education">Education &amp; Training</button>
+                </div>
+
+                <div class="cert-grid" id="cert-grid">
+                    <div class="cert-card" data-category="tech">
+                        <span class="cert-badge">IT &amp; Technology</span>
+                        <h4>IT Debate — 2nd Place Honor</h4>
+                        <p>IT Park Khiva • AI Health Tracker</p>
+                    </div>
+                    <div class="cert-card" data-category="tech">
+                        <span class="cert-badge">IT &amp; Technology</span>
+                        <h4>IT Roadshow 2 Contribution</h4>
+                        <p>IT Community of Uzbekistan</p>
+                    </div>
+                    <div class="cert-card" data-category="leadership">
+                        <span class="cert-badge">Volunteering &amp; Leadership</span>
+                        <h4>YouthCan Coordination</h4>
+                        <p>Youth Initiatives &amp; Teamwork</p>
+                    </div>
+                    <div class="cert-card" data-category="leadership">
+                        <span class="cert-badge">Volunteering &amp; Leadership</span>
+                        <h4>StemX Event Organization</h4>
+                        <p>STEM Initiatives • TATU Khorezm</p>
+                    </div>
+                    <div class="cert-card" data-category="leadership">
+                        <span class="cert-badge">Volunteering &amp; Leadership</span>
+                        <h4>“From Waste to Worth” &amp; Yashil Kelajak</h4>
+                        <p>Environmental &amp; Youth Camp Initiatives</p>
+                    </div>
+                    <div class="cert-card" data-category="education">
+                        <span class="cert-badge">Education &amp; Training</span>
+                        <h4>Kitobxonlik Coordinator</h4>
+                        <p>Reading &amp; Literary Programs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SKILLS & LANGUAGES ==================== -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">05 • Capabilities</span>
+                    <h2 class="section-title">Skills &amp; Languages</h2>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-box">
+                        <h3><i class="fa-solid fa-code"></i> Technical Skills</h3>
+                        <div class="pill-group" style="margin-bottom: 20px;">
+                            <span class="skill-pill">HTML5</span>
+                            <span class="skill-pill">CSS3</span>
+                            <span class="skill-pill">JavaScript</span>
+                            <span class="skill-pill">Responsive Design</span>
+                            <span class="skill-pill">Git &amp; GitHub</span>
+                        </div>
+                        <span class="fact-label">Currently Exploring</span>
+                        <div class="pill-group" style="margin-top: 8px;">
+                            <span class="skill-pill">React</span>
+                            <span class="skill-pill">Node.js</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-box">
+                        <h3><i class="fa-solid fa-compass"></i> Professional Skills</h3>
+                        <div class="pill-group">
+                            <span class="skill-pill">Event Coordination</span>
+                            <span class="skill-pill">Teamwork &amp; Collaboration</span>
+                            <span class="skill-pill">Public Communication</span>
+                            <span class="skill-pill">Community Organization</span>
+                            <span class="skill-pill">Continuous Learning</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-box">
+                        <h3><i class="fa-solid fa-language"></i> Languages</h3>
+                        <div class="lang-list">
+                            <div class="lang-row">
+                                <span class="lang-name">Uzbek</span>
+                                <span class="lang-level">Native</span>
+                            </div>
+                            <div class="lang-row">
+                                <span class="lang-name">English</span>
+                                <span class="lang-level">B2+</span>
+                            </div>
+                            <div class="lang-row">
+                                <span class="lang-name">Russian</span>
+                                <span class="lang-level">B2+</span>
+                            </div>
+                            <div class="lang-row">
+                                <span class="lang-name">Turkish</span>
+                                <span class="lang-level">B1+</span>
+                            </div>
+                            <div class="lang-row">
+                                <span class="lang-name">Azerbaijani</span>
+                                <span class="lang-level">A2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== BEYOND CODING ==================== -->
+        <section id="beyond">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-kicker">06 • Personal World</span>
+                    <h2 class="section-title">Beyond the screen, there is a whole world.</h2>
+                    <p class="section-subtitle">The passions and quiet moments that inspire my creativity every day.</p>
+                </div>
+
+                <div class="hobbies-grid">
+                    <div class="hobby-item">
+                        <div class="hobby-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <h4>Literature &amp; Reading</h4>
+                        <p>Exploring classic and modern books and sharing reflections through my Qamar Book Blog.</p>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon"><i class="fa-solid fa-feather-pointed"></i></div>
+                        <h4>Poetry &amp; Writing</h4>
+                        <p>Expressing thoughts, emotions, and stories through meaningful writing and verse.</p>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon"><i class="fa-solid fa-earth-americas"></i></div>
+                        <h4>Learning Languages</h4>
+                        <p>Connecting with diverse cultures across five languages and counting.</p>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon"><i class="fa-solid fa-utensils"></i></div>
+                        <h4>Cooking</h4>
+                        <p>Experimenting in the kitchen and preparing warm meals for family and friends.</p>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon"><i class="fa-solid fa-clapperboard"></i></div>
+                        <h4>Turkish Dramas &amp; Films</h4>
+                        <p>Enjoying storytelling, cinema, and practicing Turkish comprehension.</p>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h4>Exploring New Ideas</h4>
+                        <p>Brainstorming EdTech and healthcare concepts that solve everyday challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT SECTION ==================== -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">07 • Get in Touch</span>
+                    <h2 class="section-title">Have an idea? Let's connect.</h2>
+                    <p class="section-subtitle">I'm always happy to connect with people who love learning, technology, and meaningful collaboration.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div>
+                        <div class="contact-channels">
+                            <a href="mailto:rozmetovaoymonjon@gmail.com" class="channel-card">
+                                <div class="channel-left">
+                                    <div class="channel-icon"><i class="fa-solid fa-envelope"></i></div>
+                                    <div>
+                                        <span class="channel-label">Email</span>
+                                        <span class="channel-handle">rozmetovaoymonjon@gmail.com</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+
+                            <a href="https://github.com/oynuta" target="_blank" rel="noopener noreferrer" class="channel-card">
+                                <div class="channel-left">
+                                    <div class="channel-icon"><i class="fa-brands fa-github"></i></div>
+                                    <div>
+                                        <span class="channel-label">GitHub</span>
+                                        <span class="channel-handle">github.com/oynuta</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/oymonjan-ro-zmetova-162999344/" target="_blank" rel="noopener noreferrer" class="channel-card">
+                                <div class="channel-left">
+                                    <div class="channel-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                                    <div>
+                                        <span class="channel-label">LinkedIn</span>
+                                        <span class="channel-handle">Oymonjon Ro‘zmetova</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+
+                            <a href="https://t.me/rzmetvva" target="_blank" rel="noopener noreferrer" class="channel-card">
+                                <div class="channel-left">
+                                    <div class="channel-icon"><i class="fa-brands fa-telegram"></i></div>
+                                    <div>
+                                        <span class="channel-label">Telegram</span>
+                                        <span class="channel-handle">@rzmetvva</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+
+                        <!-- Telegram QR Card -->
+                        <div class="tg-qr-box">
+                            <div class="tg-qr-info">
+                                <h4><i class="fa-brands fa-telegram" style="color: var(--accent);"></i> Telegram QR Card</h4>
+                                <p>Scan or view my @RZMETVVA QR code directly.</p>
+                            </div>
+                            <button type="button" class="btn btn-outline" id="open-qr-btn" style="padding: 9px 18px; font-size: 0.85rem;">
+                                <i class="fa-solid fa-qrcode"></i> View QR
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Functional Mailto Contact Form -->
+                    <div class="contact-form-card">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="sender-name">Your Name</label>
+                                <input type="text" id="sender-name" class="form-control" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sender-email">Your Email</label>
+                                <input type="email" id="sender-email" class="form-control" placeholder="name@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sender-subject">Subject</label>
+                                <input type="text" id="sender-subject" class="form-control" placeholder="Project collaboration / Inquiry" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sender-message">Message</label>
+                                <textarea id="sender-message" rows="4" class="form-control" placeholder="Write your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Prepare Email to Oymonjon</span>
+                            </button>
+                            <p class="form-note">
+                                Submitting opens your email client pre-addressed to <strong>rozmetovaoymonjon@gmail.com</strong>.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== TELEGRAM QR MODAL ==================== -->
+    <div class="modal-backdrop" id="qr-modal" aria-hidden="true">
+        <div class="qr-modal-card" role="dialog" aria-labelledby="qr-title">
+            <button class="qr-close-btn" id="close-qr-btn" aria-label="Close QR modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="qr-avatar-badge">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+            <div class="qr-visual-box">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://t.me/rzmetvva&color=6D28D9&bgcolor=FAF8F5" alt="Telegram QR code for @rzmetvva">
+            </div>
+            <div class="qr-username" id="qr-title">@RZMETVVA</div>
+            <a href="https://t.me/rzmetvva" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; background: linear-gradient(90deg, #3B82F6, #9333EA); color: #fff;">
+                <i class="fa-brands fa-telegram"></i> Open in Telegram
+            </a>
         </div>
-    </section>
+    </div>
 
-    <!-- Projects -->
-    <section id="projects" class="projects">
-        <div class="container section-header">
-            <h2>Selected Works</h2>
-        </div>
-        <div class="container project-grid">
-            <!-- Project 1 -->
-            <article class="project-card">
-                <div class="project-content">
-                    <span class="project-status">In Progress</span>
-                    <h3>ExamLab</h3>
-                    <p>An educational platform concept for IELTS and SAT mock tests, aimed at providing students with realistic exam practice.</p>
-                    <div class="project-tech">
-                        <span>HTML</span><span>CSS</span><span>JavaScript</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="btn-text">View Project <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 2 -->
-            <article class="project-card">
-                <div class="project-content">
-                    <span class="project-status completed">2nd Place Winner</span>
-                    <h3>AI Health Tracker</h3>
-                    <p>A healthcare-related technology project focused on personal health tracking, which achieved second place at the IT Park Khiva IT Debate.</p>
-                    <div class="project-tech">
-                        <span>Healthcare Tech</span><span>AI Focus</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="btn-text">View Project <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 3 -->
-            <article class="project-card">
-                <div class="project-content">
-                    <span class="project-status concept">EdTech Concept</span>
-                    <h3>Ustoz SI</h3>
-                    <p>An AI-powered education concept designed to identify students' learning difficulties and suggest actionable next steps for teachers.</p>
-                    <div class="project-tech">
-                        <span>AI</span><span>Personalized Learning</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="btn-text">View Project <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 4 -->
-            <article class="project-card">
-                <div class="project-content">
-                    <span class="project-status concept">Startup Concept</span>
-                    <h3>BemorOvozi</h3>
-                    <p>A B2B/B2G healthcare feedback platform concept intended to help hospitals systematically collect and analyze patient feedback.</p>
-                    <div class="project-tech">
-                        <span>Healthcare</span><span>Analytics</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="btn-text">View Project <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 5 -->
-            <article class="project-card">
-                <div class="project-content">
-                    <span class="project-status completed">Personal Project</span>
-                    <h3>Qamar Book Blog</h3>
-                    <p>A personal web project dedicated to books, reading, and literature exploration.</p>
-                    <div class="project-tech">
-                        <span>Web Development</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://bookblog-qamar.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-text">Visit Site <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- Experience & Leadership -->
-    <section id="experience" class="experience">
-        <div class="container section-header">
-            <h2>Experience & Leadership</h2>
-        </div>
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
         <div class="container">
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Coordinator</h3>
-                        <h4>YouthCan</h4>
-                        <span class="timeline-date">Date Range</span>
-                        <p>Actively participated in and coordinated youth initiatives and team activities aimed at community development.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Coordinator & Organizer</h3>
-                        <h4>StemX</h4>
-                        <span class="timeline-date">Date Range</span>
-                        <p>Led STEM and technology initiatives. Organized large-scale tech events in collaboration with TATU Khorezm.</p>
-                    </div>
-                </div>
+            <div class="footer-moon-divider">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+            <h3 class="serif-heading" style="font-size: 1.35rem; margin-bottom: 6px;">Oymonjon Ro‘zmetova</h3>
+            <p style="color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">“Built with curiosity and purpose.”</p>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Coordinator</h3>
-                        <h4>Kitobxonlik</h4>
-                        <span class="timeline-date">Date Range</span>
-                        <p>Organized reading initiatives, book discussions, and activities to promote literature among peers.</p>
-                    </div>
-                </div>
+            <div class="footer-socials">
+                <a href="https://github.com/oynuta" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/oymonjan-ro-zmetova-162999344/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://t.me/rzmetvva" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="Telegram">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+                <a href="mailto:rozmetovaoymonjon@gmail.com" class="icon-btn" aria-label="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Student</h3>
-                        <h4>IT Park</h4>
-                        <span class="timeline-date">Date Range</span>
-                        <p>Engaged in continuous tech education, earning 40+ certificates and competing in regional IT debates.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Event Volunteer</h3>
-                        <h4>Various Initiatives</h4>
-                        <span class="timeline-date">Ongoing</span>
-                        <p>Contributed to IT Community of Uzbekistan, IT Roadshow 2, Khorezm Fest, Startup Fest, "From Waste to Worth" (environmental plogging), and Yashil Kelajak Camp.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements & Certificates -->
-    <section id="achievements" class="achievements">
-        <div class="container section-header">
-            <h2>Achievements</h2>
-        </div>
-        <div class="container achievements-grid">
-            <div class="achievement-highlight">
-                <i class="fa-solid fa-trophy highlight-icon"></i>
-                <h3>IT Debate Runner-up</h3>
-                <p>Secured 2nd place with the "AI Health Tracker" project at the IT Park Khiva IT Debate.</p>
-            </div>
-            <div class="achievement-highlight">
-                <i class="fa-solid fa-certificate highlight-icon"></i>
-                <h3>40+ Certificates</h3>
-                <p>Certified in various IT, volunteering, leadership, and educational training programs.</p>
-            </div>
-            <div class="achievement-highlight">
-                <i class="fa-solid fa-users highlight-icon"></i>
-                <h3>Youth Leadership</h3>
-                <p>Extensive experience coordinating youth initiatives and managing STEM activities.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills & Languages -->
-    <section id="skills" class="skills">
-        <div class="container section-header">
-            <h2>Skills & Languages</h2>
-        </div>
-        <div class="container skills-grid">
-            <div class="skill-category">
-                <h3>Technical</h3>
-                <ul class="clean-list">
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3>Professional</h3>
-                <ul class="clean-list">
-                    <li>Teamwork</li>
-                    <li>Communication</li>
-                    <li>Event Coordination</li>
-                    <li>Organization</li>
-                    <li>Continuous Learning</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3>Languages</h3>
-                <ul class="clean-list">
-                    <li><strong>Uzbek:</strong> Native</li>
-                    <li><strong>English:</strong> B2+</li>
-                    <li><strong>Russian:</strong> B2+</li>
-                    <li><strong>Turkish:</strong> B1+</li>
-                    <li><strong>Azerbaijani:</strong> A2</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Beyond Coding (Hobbies) -->
-    <section id="beyond" class="beyond-coding">
-        <div class="container section-header text-center">
-            <h2>Beyond the screen, there is a whole world.</h2>
-        </div>
-        <div class="container hobby-grid">
-            <div class="hobby-card">
-                <i class="fa-solid fa-book-open"></i>
-                <p>Reading & Literature</p>
-            </div>
-            <div class="hobby-card">
-                <i class="fa-solid fa-feather-pointed"></i>
-                <p>Poetry & Writing</p>
-            </div>
-            <div class="hobby-card">
-                <i class="fa-solid fa-earth-americas"></i>
-                <p>Learning Languages</p>
-            </div>
-            <div class="hobby-card">
-                <i class="fa-solid fa-utensils"></i>
-                <p>Cooking</p>
-            </div>
-            <div class="hobby-card">
-                <i class="fa-solid fa-film"></i>
-                <p>Turkish Dramas & Films</p>
-            </div>
-            <div class="hobby-card">
-                <i class="fa-solid fa-lightbulb"></i>
-                <p>Exploring New Ideas</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact">
-        <div class="container section-header">
-            <h2>Have an idea? Let's connect.</h2>
-            <p style="margin-top: 1rem; color: var(--text-secondary);">I'm always happy to connect with people who love learning, technology, and meaningful collaboration.</p>
-        </div>
-        <div class="container contact-grid">
-            <form id="contact-form" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-            <div class="contact-info">
-                <h3>Direct Links</h3>
-                <div class="social-links-vertical">
-                    <a href="mailto:your.email@example.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
-                    <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="#"><i class="fa-brands fa-telegram"></i> Telegram</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-moon"><i class="fa-solid fa-moon"></i></div>
-            <p>&copy; <span id="current-year"></span> Aymanjan Ro‘zmetova.</p>
-            <p class="tagline">Built with curiosity and purpose.</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted);">
+                &copy; <span id="year"></span> Oymonjon Ro‘zmetova. All rights reserved.
+            </p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Dynamic Year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 2. Dark / Light Theme Switcher
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+
+            function syncThemeIcon() {
+                const current = document.documentElement.getAttribute('data-theme');
+                if (current === 'dark') {
+                    themeIcon.className = 'fa-solid fa-sun';
+                } else {
+                    themeIcon.className = 'fa-solid fa-moon';
+                }
+            }
+            syncThemeIcon();
+
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('qamar-theme', next);
+                syncThemeIcon();
+            });
+
+            // 3. Mobile Hamburger Menu
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('open');
+                const icon = mobileToggle.querySelector('i');
+                icon.className = navLinks.classList.contains('open') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    mobileToggle.querySelector('i').className = 'fa-solid fa-bars';
+                });
+            });
+
+            // 4. Instant Profile Photo Preview & LocalStorage Persistence
+            const photoInput = document.getElementById('photo-input');
+            const profileImg = document.getElementById('profile-img');
+            const placeholder = document.getElementById('portrait-placeholder');
+            const portraitInner = document.getElementById('portrait-inner');
+
+            const savedPhoto = localStorage.getItem('oymonjon-profile-photo');
+            if (savedPhoto) {
+                profileImg.src = savedPhoto;
+                profileImg.style.display = 'block';
+                placeholder.style.display = 'none';
+                portraitInner.classList.add('has-image');
+            }
+
+            photoInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    profileImg.src = evt.target.result;
+                    profileImg.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    portraitInner.classList.add('has-image');
+                    try {
+                        localStorage.setItem('oymonjon-profile-photo', evt.target.result);
+                    } catch (err) {
+                        console.warn('Image too large for localStorage, displayed for current session.');
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+
+            // 5. Certificate Category Filter
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const certCards = document.querySelectorAll('.cert-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filter = btn.getAttribute('data-filter');
+
+                    certCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // 6. Telegram QR Modal
+            const qrModal = document.getElementById('qr-modal');
+            const openQrBtn = document.getElementById('open-qr-btn');
+            const closeQrBtn = document.getElementById('close-qr-btn');
+
+            openQrBtn.addEventListener('click', () => qrModal.classList.add('open'));
+            closeQrBtn.addEventListener('click', () => qrModal.classList.remove('open'));
+            qrModal.addEventListener('click', (e) => {
+                if (e.target === qrModal) qrModal.classList.remove('open');
+            });
+
+            // 7. Functional Mailto Contact Form
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('sender-name').value.trim();
+                const email = document.getElementById('sender-email').value.trim();
+                const subject = document.getElementById('sender-subject').value.trim();
+                const message = document.getElementById('sender-message').value.trim();
+
+                const body = `Hi Oymonjon,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}`;
+                const mailtoUrl = `mailto:rozmetovaoymonjon@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                window.location.href = mailtoUrl;
+            });
+        });
+    </script>
 </body>
 </html>
